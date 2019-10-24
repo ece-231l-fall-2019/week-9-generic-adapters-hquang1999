@@ -5,13 +5,17 @@
 
 #include <string>
 
-#if 0
+#if 1
 #include "List.h"
-typedef List<std::string> StringList;
-typedef List<int> IntList;
+//typedef StringList<char> IntList;
 #include "Stack.h"
+#include "Queue.h"
 typedef Stack<std::string> StringStack;
+typedef List<std::string> StringList;
+typedef Queue<std::string> StringQueue;
+typedef List<int> IntList;
 typedef Stack<int> IntStack;
+typedef Queue<int> IntQueue;
 #else
 #include <list>
 typedef std::list<std::string> StringList;
