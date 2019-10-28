@@ -39,18 +39,6 @@ void Assert(bool cond, std::string message)
 	}
 }
 
-void AssertNum(bool cond, int message)
-{
-	if (cond)
-	{
-		std::cout << "Pass: " << message << std::endl;
-	}
-	else
-	{
-		std::cerr << "FAIL: " << message << std::endl;
-	}
-}
-
 int main()
 {
 // ---- Test Empty ----
@@ -126,32 +114,39 @@ int main()
 	std::cout<<std::endl;
 	
 	iList.push_back(1);
-//	AssertNum (iList.back() == "1", "IntList Back = 1");
+	Assert (iList.back() == 1, "IntList Back = 1");
 	iList.push_back(9);
-//	AssertNum (iList.back() == 9, "IntList Back = 9");
+	Assert (iList.back() == 9, "IntList Back = 9");
 	iList.push_back(9);
-//	AssertNum (iList.back() == 9, "IntList Back = 9");
+	Assert (iList.back() == 9, "IntList Back = 9");
 	iList.push_back(9);
-//	AssertNum (iList.back() == 9, "IntList Back = 9");
+	Assert (iList.back() == 9, "IntList Back = 9");
 
 	iList.print();
 
 	std::cout<<std::endl;
 	
 	iStack.push(1);
+	Assert (iStack.top() == 1, "IntList Back = 1");
 	iStack.push(3);
+	Assert (iStack.top() == 3, "IntList Back = 3");
 	iStack.push(3);
+	Assert (iStack.top() == 3, "IntList Back = 3");
 	iStack.push(7);
+	Assert (iStack.top() == 7, "IntList Back = 7");
 
 	iStack.print();
 
 	std::cout<<std::endl;
 
 	iQueue.push(3);
-//	AssertNum (iQueue.front() == "3", "IntQuere = 3");
+	Assert (iQueue.front() == 3, "IntQuere = 3");
 	iQueue.push(8);
+	Assert (iQueue.back() == 8, "IntQuere = 8");
 	iQueue.push(5);
+	Assert (iQueue.back() == 5, "IntQuere = 5");
 	iQueue.push(2);
+	Assert (iQueue.back() == 2, "IntQuere = 2");
 
 	iQueue.print();
 
@@ -185,17 +180,21 @@ int main()
 	std::cout<<std::endl;
 
 	iList.pop_back();
+	Assert (iList.back() == 9, "IntList New Back = 9");
 	iList.pop_front();
+	Assert (iList.front() == 9, "IntList New Front = 9");
 	iList.print();
 
 	std::cout<<std::endl;
 
 	iStack.pop();
+	Assert (iStack.top() == 3, "IntStack New Back = 3");
 	iStack.print();
 
 	std::cout<<std::endl;
 
 	iQueue.pop();
+	Assert (iQueue.front() == 8, "IntQueue New Front = 8");
 	iQueue.print();
 
 	std::cout<<std::endl;

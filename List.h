@@ -235,15 +235,21 @@ class List
 template<typename V>
 inline bool operator==(const List<V>& a, const List<V>& b)
 {
-	while (a != 0 && a -> value == b -> value)
+	if (a.size() == b.size())
 	{
-		return true;
-		a = a -> next;
+		llist *firstL = a;
+		llist *secondL = b;
+		while (firstL != 0 && firstL -> value == secondL -> value)
+		{
+			return true;
+			firstL = firstL -> next;
+		}
+		return false;
 	}
 	return false;
 }
-*/
-/*
+
+
 template<typename V>
 inline bool operator!=(const List<V>& a, const List<V>& b)
 {
