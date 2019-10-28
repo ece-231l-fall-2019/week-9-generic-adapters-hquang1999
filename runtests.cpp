@@ -7,15 +7,17 @@
 
 #if 1
 #include "List.h"
-//typedef StringList<char> IntList;
 #include "Stack.h"
 #include "Queue.h"
-typedef Stack<std::string> StringStack;
+
 typedef List<std::string> StringList;
+typedef Stack<std::string> StringStack;
 typedef Queue<std::string> StringQueue;
+
 typedef List<int> IntList;
 typedef Stack<int> IntStack;
 typedef Queue<int> IntQueue;
+
 #else
 #include <list>
 typedef std::list<std::string> StringList;
@@ -28,62 +30,190 @@ typedef std::stack<int> IntStack;
 void Assert(bool cond, std::string message)
 {
 	if (cond)
+	{
 		std::cout << "Pass: " << message << std::endl;
+	}
 	else
+	{
 		std::cerr << "FAIL: " << message << std::endl;
+	}
+}
+
+void AssertNum(bool cond, int message)
+{
+	if (cond)
+	{
+		std::cout << "Pass: " << message << std::endl;
+	}
+	else
+	{
+		std::cerr << "FAIL: " << message << std::endl;
+	}
 }
 
 int main()
 {
-	// TODO:
-	// Write more tests to fully test your classes.
+// ---- Test Empty ----
 
-	StringList a;
-	StringList b;
+	std::cout<<"[Testing if it's EMPTY]"<<std::endl;
+	std::cout<<"-----------------------"<<std::endl;
 
-	a.push_front("A");
-	Assert(a.front() == "A", "front == A");
-	a.push_front("B");
-	Assert(a.front() == "B", "front == B");
-	a.pop_front();
-	Assert(a.front() == "A", "front == A");
-	a.push_front("Z");
-	Assert(a.front() == "Z", "front == Z");
+	StringList sList;
+	StringStack sStack;
+	StringQueue sQueue;
+	
+	IntList iList;
+	IntStack iStack;
+	IntQueue iQueue;
+	
+	Assert (sList.empty(), "StringList is EMPTY");
+	Assert (sStack.empty(), "StringStack is EMPTY");
+	Assert (sQueue.empty(), "StringQueue is EMPTY");
+	Assert (iList.empty(), "IntList is EMPTY");
+	Assert (iStack.empty(), "IntStack is EMPTY");
+	Assert (iQueue.empty(), "IntQueue is EMPTY");
+	
+	std::cout<<std::endl;
 
-	b = a;
+// ---- Test Pushing ----
 
-	Assert(b.front() == "Z", "b.front == Z");
-	b.pop_front();
-	Assert(b.front() == "A", "b.front == A");
-	b.pop_front();
-	Assert(b.empty() == true, "b is empty");
-	Assert(a.empty() == false, "a is NOT empty");
+	std::cout<<"[Test Pushing]"<<std::endl;
+	std::cout<<"--------------"<<std::endl;
+	
+	sList.push_back("H");
+	Assert (sList.back() == "H", "StringList Back = H");
+	sList.push_back("E");
+	Assert (sList.back() == "E", "StringList Back = E");
+	sList.push_back("L");
+	Assert (sList.back() == "L", "StringList Back = L");
+	sList.push_back("L");
+	Assert (sList.back() == "L", "StringList Back = L");
+	sList.push_back("O");
+	Assert (sList.back() == "O", "StringList Back = O");
+	
+	sList.print();	
+	
+	std::cout<<std::endl;	
+	
+	sStack.push("W");
+	Assert (sStack.top() == "W", "StringStack Back = W");
+	sStack.push("O");
+	Assert (sStack.top() == "O", "StringStack Back = O");
+	sStack.push("R");
+	Assert (sStack.top() == "R", "StringStack Back = R");
+	sStack.push("L");
+	Assert (sStack.top() == "L", "StringStack Back = L");
+	sStack.push("D");
+	Assert (sStack.top() == "D", "StringStack Back = D");
 
-	// TODO: check all methods on StringList...
+	sStack.print();
+	
+	std::cout<<std::endl;
+	
+	sQueue.push("T");
+	Assert (sQueue.front() == "T", "StringQueue = T");
+	sQueue.push("E");
+	Assert (sQueue.back() == "E", "StringQueue = E");
+	sQueue.push("S");
+	Assert (sQueue.back() == "S", "StringQueue = S");
+	sQueue.push("T");
+	Assert (sQueue.back() == "T", "StringQueue = T");
+	sQueue.push("S");
+	Assert (sQueue.back() == "S", "StringQueue = S");
 
-	StringStack c;
-	c.push("A");
-	c.push("B");
-	Assert(c.top() == "B", "B is at top");
-	c.pop();
-	Assert(c.empty() == false, "B is not empty");
-	c.pop();
-	Assert(c.empty() == true, "B is empty");
+	sQueue.print();
 
-	// TODO: check all methods on StringStack...
+	std::cout<<std::endl;
+	
+	iList.push_back(1);
+//	AssertNum (iList.back() == "1", "IntList Back = 1");
+	iList.push_back(9);
+//	AssertNum (iList.back() == 9, "IntList Back = 9");
+	iList.push_back(9);
+//	AssertNum (iList.back() == 9, "IntList Back = 9");
+	iList.push_back(9);
+//	AssertNum (iList.back() == 9, "IntList Back = 9");
 
-	IntList ia;
-	ia.push_front(5);
-	ia.push_front(6);
-	Assert(ia.front() == 6, "front is 6");
+	iList.print();
 
-	// TODO: check all methods on IntList...
+	std::cout<<std::endl;
+	
+	iStack.push(1);
+	iStack.push(3);
+	iStack.push(3);
+	iStack.push(7);
 
-	IntStack ic;
-	ic.push(6);
-	ic.push(5);
-	Assert(ic.top() == 5, "top is 5");
+	iStack.print();
 
+	std::cout<<std::endl;
+
+	iQueue.push(3);
+//	AssertNum (iQueue.front() == "3", "IntQuere = 3");
+	iQueue.push(8);
+	iQueue.push(5);
+	iQueue.push(2);
+
+	iQueue.print();
+
+	std::cout<<std::endl;
+
+
+// ---- Test Popping ----
+
+
+	std::cout<<"[Test Popping]"<<std::endl;
+	std::cout<<"--------------"<<std::endl;
+	
+	sList.pop_back();
+	Assert (sList.back() == "L", "StringList New Back = L");
+	sList.pop_front();
+	Assert (sList.front() == "E", "StringList New Front = E");	
+	sList.print();
+
+	std::cout<<std::endl;
+	
+	sStack.pop();
+	Assert (sStack.top() == "L", "StringStack New Back = L");
+	sStack.print();
+
+	std::cout<<std::endl;
+
+	sQueue.pop();
+	Assert (sQueue.front() == "E", "StringQueue New Front = E");
+	sQueue.print();
+
+	std::cout<<std::endl;
+
+	iList.pop_back();
+	iList.pop_front();
+	iList.print();
+
+	std::cout<<std::endl;
+
+	iStack.pop();
+	iStack.print();
+
+	std::cout<<std::endl;
+
+	iQueue.pop();
+	iQueue.print();
+
+	std::cout<<std::endl;
+
+// ---- Testing Operator== ----
+/*	
+	IntStack cpy;
+	IntStack dst;
+
+	cpy.push(6);
+	dst.push(5);
+	
+	cpy.print();
+	dst.print();
+
+	Assert(dst == cpy, "Both stack tops are equal");
+//	Assert(dst != cpy, "Both stack tops are NOT equal");
+*/	
 	// TODO: check all methods on IntStack...
 
 	return 0;

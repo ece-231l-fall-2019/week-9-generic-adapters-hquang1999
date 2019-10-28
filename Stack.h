@@ -42,7 +42,13 @@ class Stack
 		 c = other.c;
 		 return *this;
 	 }
- 	 template<typename V> friend bool operator==(const Stack<V>& a, const Stack<V>& b);
+
+ 	 void print() 
+	 {
+		 c.print();
+	 }
+
+	 template<typename V> friend bool operator==(const Stack<V>& a, const Stack<V>& b);
 	 template<typename V> friend bool operator!=(const Stack<V>& a, const Stack<V>& b);
 
 };

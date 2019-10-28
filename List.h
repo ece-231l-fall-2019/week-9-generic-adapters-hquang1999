@@ -166,7 +166,6 @@ class List
 		}
 		
 		delete saveBack;
-		_back -> next = NULL;
 		_size--;	
 	}
 
@@ -216,19 +215,40 @@ class List
 			}
 		}
 	}
-
+	
 	// print
 	void print() 
 	{
 		llist *temp = _front;
 		while (temp != 0)
 		{
-			std::cout << temp -> str << " ";
+			std::cout << temp -> value << " ";
 			temp = temp -> next;
 		}
 		std::cout << std::endl;
 	}
 
+	template<typename V> friend bool operator==(const List<V>& a, const List<V>& b);
+	template<typename V> friend bool operator!=(const List<V>& a, const List<V>& b);
 };
+/*
+template<typename V>
+inline bool operator==(const List<V>& a, const List<V>& b)
+{
+	while (a != 0 && a -> value == b -> value)
+	{
+		return true;
+		a = a -> next;
+	}
+	return false;
+}
+*/
+/*
+template<typename V>
+inline bool operator!=(const List<V>& a, const List<V>& b)
+{
+	return a.c != b.c;
+}	
+*/
 
 #endif // __EE231_List_h__

@@ -7,12 +7,12 @@ class Queue
   public:
      T& front()
      {
-		 c.front();
+		 return c.front();
 	 }
 	 
 	 T& back()
 	 {
-		 c.back();
+		 return c.back();
 	 }
      
 	 const T& front() const
@@ -32,7 +32,7 @@ class Queue
 
      void pop()
      {
-		 c.pop_back;
+		 c.pop_front();
 	 }
 	 
 	 size_t size() const
@@ -50,6 +50,10 @@ class Queue
 		 c = other.c;
 	 }
 
+	 void print()
+	 {
+		 c.print();
+	 }
 	 template<typename V> friend bool operator==(const Queue<V>& a, const Queue<V>& b);	
 	 template<typename V> friend bool operator!=(const Queue<V>& a, const Queue<V>& b);	
 };
