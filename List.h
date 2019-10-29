@@ -21,7 +21,15 @@ class List
 	llist *_front;
 	llist *_back;
 
-
+	void reccopy(const llist *ptr)
+	{
+		if (ptr)
+		{
+			reccopy(ptr->next);
+			push_front(ptr->val);
+		}
+	}
+	
 	public:
 	
 	// default constructor
@@ -33,7 +41,6 @@ class List
 		_back = 0;
 	}
 
-
 	// destructor	
 	~List()
 	{
@@ -42,6 +49,15 @@ class List
 			pop_front();
 		}
 	}
+
+	// copy constructor
+	List(const List& other)
+	{
+		_size = 0;
+		_front = 0;
+		_back = 0;
+		reccopy(other._front);
+	}	
 	
 	// operator =
 	List& operator=(const List& a)
@@ -172,7 +188,7 @@ class List
 	// empty
 	bool empty() const
 	{
-		return _front == 0;
+		return (_front == 0 && _back == 0);
 	}
 
 	// reverse
@@ -227,34 +243,82 @@ class List
 		}
 		std::cout << std::endl;
 	}
-
+	
+	//friends
 	template<typename V> friend bool operator==(const List<V>& a, const List<V>& b);
 	template<typename V> friend bool operator!=(const List<V>& a, const List<V>& b);
 };
-/*
+
+//operator==
 template<typename V>
-inline bool operator==(const List<V>& a, const List<V>& b)
+bool operator==(const List<V>& a, const List<V>& b)
 {
-	if (a.size() == b.size())
+	if (a.size() != b.size())
 	{
-		llist *firstL = a;
-		llist *secondL = b;
-		while (firstL != 0 && firstL -> value == secondL -> value)
+		return false;
+	}
+
+	auto *aptr = a._front;
+	auto *bptr = b._front;
+
+	for (; aptr != 0 && bptr != 0; aptr = aptr -> next, bptr = bptr ->next)
+	{
+		if (aptr -> value != bptr -> value)
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+//operator!=
+template<typename V>
+bool operator!=(const List<V>& a, const List<V>& b)
+{
+	if (a.size() != b.size())
+	{
+		return true;
+	}
+
+	auto *aptr = a._front;
+	auto *bptr = b._front;
+
+	for (; aptr != 0 && bptr != 0; aptr = aptr -> next, bptr = bptr ->next)
+	{
+		if (aptr -> value != bptr -> value)
 		{
 			return true;
-			firstL = firstL -> next;
 		}
-		return false;
 	}
 	return false;
 }
-
-
+/*
 template<typename V>
-inline bool operator!=(const List<V>& a, const List<V>& b)
-{
-	return a.c != b.c;
-}	
+inline bool operator==(const List<V>& a, const List<V>& b)
+
+	List x(a);
+	List y(b);
+	if (x.size == y.size)
+	{
+		while ((x.begin != NULL) && (y.being != NULL))
+		{
+			if (x -> value == y -> value)
+			{
+				x.begin++;
+				y.begin++;
+			}
+			else
+			{
+				break;
+				return false;
+			}
+		}
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 */
 
 #endif // __EE231_List_h__

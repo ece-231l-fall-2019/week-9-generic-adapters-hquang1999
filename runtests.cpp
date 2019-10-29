@@ -47,6 +47,7 @@ int main()
 	std::cout<<"-----------------------"<<std::endl;
 
 	StringList sList;
+	StringList sListCln;
 	StringStack sStack;
 	StringQueue sQueue;
 	
@@ -200,19 +201,24 @@ int main()
 	std::cout<<std::endl;
 
 // ---- Testing Operator== ----
-/*	
-	IntStack cpy;
-	IntStack dst;
 
-	cpy.push(6);
-	dst.push(5);
+	std::cout<<"[Test Operator==]"<<std::endl;
+	std::cout<<"-----------------"<<std::endl;
 	
-	cpy.print();
-	dst.print();
+	sListCln = sList;
 
-	Assert(dst == cpy, "Both stack tops are equal");
+	std::cout<<"List: "<<std::endl;
+	sList.print();
+	std::cout<<"Compared List: "<<std::endl;
+	sListCln.print();
+
+	Assert (sList == sListCln, "Both Stacks are Equal");
+	//Assert (sList != sStack, "Both Stacks are NOT Equal");
+
+
+//	Assert(dst == cpy, "Both stack tops are equal");
 //	Assert(dst != cpy, "Both stack tops are NOT equal");
-*/	
+	
 	// TODO: check all methods on IntStack...
 
 	return 0;
