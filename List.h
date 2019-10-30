@@ -26,7 +26,7 @@ class List
 		if (ptr)
 		{
 			reccopy(ptr->next);
-			push_front(ptr->val);
+			push_front(ptr->value);
 		}
 	}
 	
@@ -292,33 +292,5 @@ bool operator!=(const List<V>& a, const List<V>& b)
 	}
 	return false;
 }
-/*
-template<typename V>
-inline bool operator==(const List<V>& a, const List<V>& b)
-
-	List x(a);
-	List y(b);
-	if (x.size == y.size)
-	{
-		while ((x.begin != NULL) && (y.being != NULL))
-		{
-			if (x -> value == y -> value)
-			{
-				x.begin++;
-				y.begin++;
-			}
-			else
-			{
-				break;
-				return false;
-			}
-		}
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-*/
 
 #endif // __EE231_List_h__
